@@ -1,0 +1,604 @@
+deploywz@projectwz-vps:~$ sudo du -xhd1 /opt 2>/dev/null | sort -h
+12K     /opt/containerd
+62G     /opt
+62G     /opt/projectwz
+deploywz@projectwz-vps:~$ sudo du -xhd1 /var/lib 2>/dev/null | sort -h
+4.0K    /var/lib/aptitude
+4.0K    /var/lib/boltd
+4.0K    /var/lib/dbus
+4.0K    /var/lib/dhcp
+4.0K    /var/lib/git
+4.0K    /var/lib/man-db
+4.0K    /var/lib/misc
+4.0K    /var/lib/os-prober
+4.0K    /var/lib/plymouth
+4.0K    /var/lib/private
+4.0K    /var/lib/python
+4.0K    /var/lib/tpm
+4.0K    /var/lib/ubuntu-drivers-common
+4.0K    /var/lib/ubuntu-release-upgrader
+4.0K    /var/lib/udisks2
+4.0K    /var/lib/unattended-upgrades
+4.0K    /var/lib/upower
+8.0K    /var/lib/apport
+8.0K    /var/lib/landscape
+8.0K    /var/lib/logrotate
+8.0K    /var/lib/sudo
+8.0K    /var/lib/vim
+12K     /var/lib/update-manager
+16K     /var/lib/grub
+20K     /var/lib/update-notifier
+28K     /var/lib/pam
+36K     /var/lib/PackageKit
+40K     /var/lib/polkit-1
+116K    /var/lib/ucf
+192K    /var/lib/fail2ban
+200K    /var/lib/cloud
+596K    /var/lib/systemd
+704K    /var/lib/usbutils
+2.0M    /var/lib/fwupd
+3.5M    /var/lib/command-not-found
+7.2M    /var/lib/ubuntu-advantage
+33M     /var/lib/dpkg
+318M    /var/lib/apt
+435M    /var/lib/docker
+793M    /var/lib/snapd
+18G     /var/lib/containerd
+20G     /var/lib
+deploywz@projectwz-vps:~$ docker system df -v
+Images space usage:
+
+REPOSITORY                     TAG           IMAGE ID       CREATED         SIZE      SHARED SIZE   UNIQUE SIZE   CONTAINERS
+projectwz-dashboard            latest        6ecbfc6f55af   4 days ago      1.65GB    193.2MB       1.456GB       1
+projectwz-api                  latest        7266c5273d4a   4 days ago      1.91GB    193.2MB       1.717GB       4
+projectwz/wz-connector         2.3.7-wz.1    d0adbbe3759d   5 days ago      1.7GB     2B            1.702GB       1
+jpillora/chisel                latest        e5538d0a8432   5 weeks ago     17.2MB    0B            17.22MB       1
+baptistearno/typebot-builder   latest        67716df95207   6 weeks ago     6.19GB    338.5MB       5.854GB       1
+baptistearno/typebot-viewer    latest        0911a6c60f0c   6 weeks ago     5.98GB    338.5MB       5.641GB       1
+redis                          7-alpine      e7723ff73d96   2 months ago    57.8MB    32B           57.82MB       1
+postgres                       15-alpine     3d0f7584ed7d   3 months ago    417MB     0B            416.6MB       1
+caddy                          2.10-alpine   4c6e91c6ed0e   7 months ago    83.2MB    32B           83.19MB       1
+node                           18-alpine     8d6421d663b4   18 months ago   181MB     0B            181.3MB       1
+
+Containers space usage:
+
+CONTAINER ID   IMAGE                                 COMMAND                  LOCAL VOLUMES   SIZE      CREATED       STATUS                    NAMES
+c76690b3b6d1   projectwz-api:latest                  "docker-entrypoint.s…"   0               36.9kB    4 days ago    Up 4 days (healthy)       wz-campaign-worker-prod
+d61cc6fe6369   projectwz-api:latest                  "docker-entrypoint.s…"   0               73.7kB    4 days ago    Up 4 days (healthy)       wz-api-prod
+503023bfc63a   projectwz-api:latest                  "docker-entrypoint.s…"   0               12.3kB    4 days ago    Up 4 days (healthy)       wz-webhook-worker-prod
+e413cf1ef4cd   projectwz-api:latest                  "docker-entrypoint.s…"   0               12.3kB    4 days ago    Up 4 days (healthy)       wz-group-join-worker-prod
+984137ba16e9   projectwz-dashboard                   "docker-entrypoint.s…"   0               20.5kB    4 days ago    Up 4 days (healthy)       wz-dashboard-prod
+69ce8c9be501   0a1216c17552                          "/bin/bash -c '. ./D…"   0               29.8MB    5 days ago    Up 30 seconds (healthy)   projectwz-evolution-1
+07d93d083e80   baptistearno/typebot-builder:latest   "/bin/sh -c ./${SCOP…"   0               98.3kB    3 weeks ago   Up 5 days                 wz-typebot-builder
+bf5b470b8740   baptistearno/typebot-viewer:latest    "/bin/sh -c ./${SCOP…"   0               41kB      3 weeks ago   Up 5 days                 wz-typebot-viewer
+9828ab439453   postgres:15-alpine                    "docker-entrypoint.s…"   0               61.4kB    3 weeks ago   Up 5 days (healthy)       wz-postgres-prod
+8e37c85940ab   redis:7-alpine                        "docker-entrypoint.s…"   0               4.1kB     3 weeks ago   Up 13 seconds (healthy)   wz-redis-prod
+022a1c922178   caddy:2.10-alpine                     "caddy run --config …"   0               4.1kB     3 weeks ago   Up 3 weeks                wz-caddy-prod
+8d74f5c14c97   node:18-alpine                        "docker-entrypoint.s…"   0               15.5MB    5 weeks ago   Up 5 weeks                proxy_vps_hub
+a8bd2110a328   jpillora/chisel:latest                "/ko-app/chisel serv…"   0               4.1kB     5 weeks ago   Up 5 weeks                chisel_tunnel_daemon
+
+Local Volumes space usage:
+
+VOLUME NAME                                                        LINKS     SIZE
+52dd112c6be4c0b997f4119ceda9a833af27eeb5792dea5f449a7d3e02cfb3d3   0         0B
+e58c176996b61843931147e8b7374aacf41e64e772deef712d54131dad524db7   0         0B
+63a5f834b0d2bbdfa841321e3d2fc6a5b87c005f9b1641db88e8debade5f5207   0         0B
+4a8d490d97d2b74d7f6e588063ea246f47ce5d1f1a83448868ecb68e2668c1b5   0         0B
+10364366ebe31e74c5fd2c56d36b6b58519a17096db6464996a381554af66f4f   0         0B
+2a4de978262e8373dd70d1b9b8833999f4343271b8deb3478e06a20b82fb6af8   0         0B
+
+Build cache usage: 1.252GB
+
+CACHE ID        CACHE TYPE   SIZE      CREATED      LAST USED    USAGE     SHARED
+wrmrhl2h18ri*   regular      1.04GB    5 days ago                0         false
+zkcxhidwc1xs*   regular      8.19kB    5 days ago   5 days ago   1         false
+e7wkj87dpuzo*   regular      154MB     5 days ago   5 days ago   1         false
+xv09syfvvylh*   regular      565kB     5 days ago   5 days ago   1         false
+mqa2r64wwaf4*   regular      16.4kB    5 days ago   5 days ago   2         false
+lbf1rw63ej93*   regular      3.85MB    5 days ago   5 days ago   2         false
+8q1jw0ta28mn*   regular      56.5MB    5 days ago   5 days ago   2         false
+h3i63wwde3ab*   regular      1.26MB    5 days ago   5 days ago   2         false
+2zbmctyry084*   regular      444B      5 days ago   5 days ago   2         false
+deploywz@projectwz-vps:~$ docker top projectwz-evolution-1 -eo pid,ppid,%cpu,%mem,etime,args
+PID                 PPID                %CPU                %MEM                ELAPSED             COMMAND
+1788403             1788379             0.0                 0.0                 00:40               /sbin/docker-init -- /bin/bash -c . ./Docker/scripts/deploy_database.sh && npm run start:prod
+1788431             1788403             0.2                 1.4                 00:40               npm run start:prod
+1788634             1788431             73.5                12.9                00:37               node dist/main
+1789171             1788379             2.5                 1.5                 00:04               node -e fetch('http://127.0.0.1:8080/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+deploywz@projectwz-vps:~$ docker logs --tail 100 projectwz-evolution-1
+    pairedMediaType: 0,
+    statusSourceType: 0
+  },
+  messageType: 'imageMessage',
+  messageTimestamp: 1791476672,
+  instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c',
+  source: 'ios'
+}
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:24:36     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'messages.upsert',
+  instance: 'wz_71cb125a181849ff80b35b8ef121b23a',
+  data: {
+    key: {
+      remoteJid: '120363410092574414@g.us',
+      remoteJidAlt: undefined,
+      remoteJidUsername: undefined,
+      fromMe: false,
+      id: '3A91213BB415941A0538',
+      participant: '113426378575883@lid',
+      participantAlt: '5511916502021@s.whatsapp.net',
+      participantUsername: undefined,
+      addressingMode: 'lid'
+    },
+    pushName: 'Chris',
+    status: 'DELIVERY_ACK',
+    message: {
+      senderKeyDistributionMessage: [Object],
+      messageContextInfo: [Object],
+      imageMessage: [Object],
+      base64: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAQFBQkGCQkJCQkKCAkICgsLCgoLCwwKCwoLCgwMDAwNDQwMDAwMDw4PDAwNDw8PDw0OERERDhEQEBETERMREQ0BBAQECAYIBwgIBwgGCAYICAgHBwgICQcHBwcHCQoJCAgICAkKCQgIBggICQkJCgoJCQoICQgKCgoKCg4QDg4Od//CABEIBBEExAMBIgACEQEDEQH/xAEmAAEAAgMBAQAAAAAAAAAAAAAABAYCAwUHAQEBAAMBAQEAAAAAAAAAAAAAAAEDBgIEBRAAAAQCBwUEBwQFBREAAAAAAAIDEgQFAQcQIDWEtBMiMlBgBjAzQhEUISNAQ1MVY4OzFjE0QVJEUXOhoxckVGFicXSBgpGTpLHD4+TwEQABAgMDBQoJCAgFAwIHAQABAgMABBEFEiETMUFRcQYQIjJhgZGhsfAUIDAzNFJywdEVI0Jgc4Ky4RZAU2JwksLxQ1CDotIkNUST4lRjZHSEo7PDEgEAAQMCBQMEAgMBAAAAAAABEQAhMUFhUXGBkaEQsfAgMMHRYPFAcOFQEwACAQMCBQQDAQEBAAAAAAAAAREhMcEQQSAwUfDxQGBhcVBwgaGRsf/aAAwDAQACEAMRAAACowmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADXfaFfcdj6MNjsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAAB3eF6aeb6unzAAAAAAAAAAAAAAAAAAAAAAAAkfDQnQQAAAAAAAAAnQQAAAlajUnQj4AAAAAAAAAAAAAB3uzYyF0vPOKetcWg2U4MT2DycjgAAAAbOj6OeTvWB5O9YHk71geS4+heegAGu+0K+47H0YbHYAAAPTfMvTSi8zp8wAAAAAAAAAAAAAAAAAPt5KK9PqZXHXspQ3o9DIj0Xaea9TV6Adbz6/+cw9O8U9r8UkXHvHmCzQTjrhxjkLlViM9G2nmjpxiK9F2nmroxiO9Hjls8U9r8UC5d48vWmrBcO6a6xd6QXXze20sjrhYDy9bKmPQK76WVGieiedgB3uOaSWRHY44JTqKsyn61ZSotvyQnkB2OP6IdryWx1gtlpqFeL5Qr3zzic3EAAAAAAAAAAAAa77Qr7jsfRhsdgA6vKHrjycesdDxf0qHRw855svWOJQsTEAAAAAAAAAAAAAAAG6x8b0Yp97q1shQLzRrEUm6+c+oyiasebDucSHtlZfOfQPOT2vy/wBQ85hfaTb6gX7xq11OXqe/ld2HlmMbvS192fohhsxlnAgaYEvSOJZeFDTW+nVpe0eX+nedwufm1682l7F53eatC6+V+keUS9ZpFpqxffLvUfNIdfn3yuSvXi3tXnULfV7vpOD537R5hLjA6l48z6hhftnnAhg7fEn8eztjyaqBxJ8D15UO/GA9X8o9VPOPmVlLFnXaQew6+VFhToXqvlUgAAAAOr6P5HsPWHk49YeTj1h5OL957liAAa77Qr7jsfRhsdgAAA9N8y9NKLzOnzAAAAAAAAAAAAAAAAADp+p+M7D0zqeO4llsXnAWCvj2DDyXItOisD0bzkPa/GtI9a1+Vbj02mV4eqVipD0nhVMexRfLdR6LWa+PYPnkf0tPM4o9k5vmPw9o8a0j1rDyncemeYax63q8q2nsPnVdHr/mvKHs3K8xHtPiYLTVh6J52AAAAAG9oRYE1gAL3RJRYuJ6b5sek5+PD0OgfPQCweOX2hAAAAABPuBQF/FAX8UBfxQFuqIABrvtCvuOx9GGx2AAAC31ASYwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdD0Ly0esY+Wbj1msUX4ZYgAAAABu7deFhV4WFXhYVeHX5AAAa77Qr7jsfRhsdgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAAAAAAZZmpuGluGlt1nwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAADaYyc/oAAABpjzsSCzwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAAAzma9oAAAAABjCnxjQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADXfaFfcdj6MNjsAAAH35mTQAAAAAAMM/hAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAADZr2EwAAAAAAAHPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAADZr2EwAAA7xwU2EAAAQ8Zv056drIrbrPgAAAAAAABLIgAAAAAAACXEB1TlJEcAAAAFiOFtkZHM+WiumkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAMsR0GOQAAAAAAxy3RzysurE4407Ivyy2f8h7j5pnYkJs1gAAAAAD1byn1Y8pA6OdqKZG9W87Imm/1U5+Vw7R5rHvXGOfEuPfPJwereU+reUiyVu8lW1TvSjy+Ff5Z5/z/AFTzwjS7ZsPPflsqZ1oe+AYp/QON38OJMNE+BEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAAABvk8+YbAAAAAAfb5y7b1XD19P7V5K7wfQdVUeUQfUq/HdNk5wvR6+hHwlT1ASox8AAAAA9W8p9SPLXomorVi49rJvnl885hc6tfIUoPX4PTPObJW7gSLTyJsPKBL1byn1vkw86vOOmXHvFEuJVO1wusSuD1+OWbPpQYQKPcadKz1vHuyl660Qkx7RE8bn/fgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAAAH2UyPuUDaiUnw+ecB12ZbyM6PSK7a5Ubjq158JE95WbBZXu+c/mWcdjKvK53VntYeDy0fO01T1eidq0y7bYCRHAAAAAAAAAAAAAAAAAAAAEiOLDz+cLPWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAABv1TRD2aDK3R+94vn79kyB7PVVMfQ9nVnC7fllyT3qZNpfnv3bOxu5sjRZfHTK6PDx6r9N53Ls/XHM5szn8xs+bo8z9ibdtHipW7t171W9CHuz7shAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAAZEjPOIa+nzLr5vL3e3Upcd2Yx9V2OcXbMVuZ2uDTdSJnLuNPol69nzm+Pz+jD46rMfpce/yT/QvL773X065ZYCOLnI3TzB633ZR1oo1tiU/PqU2BJ+l68NM2EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAAkR5p9gyI52evlB+Z4dnY4/Rv+n3fkfP0V6dnM38uhB69e8/p4E6BM7s7GemLTdpyg7+uNHH7vDsqWatyravQvnz5X1Dym8qvjbJg51xD14a4p4UGzVf21dCHIwuujAAAHpBxqh7P5KdXv9Pzwkca5U0AAAAAAAAAdTl+iGHH5HoZ5VaOJ6Mcf5wtByQDonSg+q+flVAd7cVtYdxWJHZ4JfeMmnJ4Noq4AAAAAAAOwRuldeUUS6bOWTaZbsylAAAAAAAAAAAAAAA132hX3HY+jDY7AAD7PhzCH919Xjizc+XL+XXGk7N/o92nDXz7edkvX0z5SOvUuLrn24W+bfvH36OLd8rPLnrncCycFxytkXb6/F6Nt5XVqs28XtwaeOdjPh888jCZqu4m0y8VN49W2PL9vp5778AAAPXKPeKIXmLzqAXij+ueRgAAAAAAAAAuZz7rB87MPWfI+sWvt+R+jQ8+1dTlyy9Nq15K5zblrh5O2a5eo1yx+cnqdOs/mh6v5V6X5sej1+wV+EOr2iryAAAAAAAA7dmrNmJNEvNJN9qq9lPPwAAAAAAAAAAAAAAa77Qr7jsfRhsdgABukadpCsNetHm8s/XK3eX1YZxtF92GOyPdxvsfPm021Gt9nj2TdYseVVdysbRzXec2uTa+p1f6PE6rjtkf1+W22ai3mi3b8+7+FOSOVFMuJGdx1edls58XCnQJ/u9MLDZrAAAPXPKNQ9Tj+a7S++eAAAAAAAAAA9g8fHprzIdK7ebj0uV5jpMvRfOfRTzxrF0j1Mffgeo+cxB6p5pGHq3m0IeqV+li0VcAAAAAAAAO3ZvPhYLr5VsPU6FyMAAAAAAAAAAAAAAADXfaFfcdj6MNjsAAJGzXtIdsqVp8vj7P3RM8/u40nobfT3yPm3S57SZzqvRUOV3OBa69lq/Qifs7iuLJXJ1xrKehzvuPdb7r2d8zvQvN/QaLpmzDKHJrl14lPPA19D7ZEGTMgc+Cv9CBP9/oh69msAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AADdIizCBYa91qPP39ujneKzsTK/P69XTgbN0u9zOhV3o5fBmRfRw28+dZV81TNXPUbCfLIOHZ5XFkF82X+aRYaxNrt9IRZXE41qxVznmT1oe2vubRbTSnzoU6JL+hfCw+/AAAWcrC78U4TO4FMXGoGK3bil9CXejyp2eqVFdKaYgAAAAFnKwu9ONKwdgo6ZJOUvEYqCbtOb9nfDs1jvQCBaOj0TzvTIsBV13qJGWOaU9LthSFi5xzl5r5xgAAAADcaV2glXZ28pq31E+LVJKY7/AMOCdwwjZ6CGtsso6fvOTbZnSPNH23FQXSoGoAAAAAGu+0K+47H0YbHYAAfZ/PmkbP7HiL3wOzA+Z4dXX4ky76nb6NesNfe+rWSJHoq3A6nO9VcWfBl2U2XL7s8Pvi4y8I6i8Hs1/wBPm+fNuN/m+5y8+O591qHRq77+zH7dVxYnd5fn6woVsqXfzZG35h6/VGAAA9F869FPO7/QL+czi9rikiZDmndq+vuFMvVbspRfQfPuqbeJc+EccAAAAD0TzvsmzmWD6WWu9Gll1xrNnKD6P516QU2VEnEb5Mhlg+/PsKLfaFfZVfr8jrlWulLuhJ8/vNDPQ+V0KceicPjxCdB2WkoAAAAAHa4sstPDxuBxZ0PmFp43MHWrNprRddO7VCh3mkehS4EGdBLb5/eKGXnbq2lC9G859GKvljkcqz1izlMAAAAABrvtCvuOx9GGx2AACRHyJkHoRDr9+j3j53zovzHc+pstFNuPVsaBuj+b2VfkW6u+ynnZ477/AD2ffEkeH6GXzH5z1Cr9i5Pq8sPpTbF1TxpPU3xOiBx49nHa3fXfG2ZTcaKNXNxk+id8OTC67AAAei+dW0lcXhDO4UwXCo4i45UwZ2SsDtdenC50/AAAAAALXVBdqjHFi61HHQz5lrJfT52op1zpQt9egjvQIAvEenjZZKuLvUYw73BCZbKOLLz+ULzweIAAAAAEmMLvBqwzuFMFxqGORZJPQ1GVWkcQvPPqw6eiGO9wQ7ujki8w6kPttqIulQ1AAAAAADXfaFfcdj6MNjsAAAJWcSaQexzdHFd40Y2X5vjnxZvL9H2orXvpujxOlAtr5MC48Ltu3x91foxwkbuUKXl0rKNcr59sq00+xV+yvt3gsrOf9J9HvA8LndPjy16QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAABv0CfDkZEe6Ujb5/N6hE5czwc47cPnq+tO5HY5PUdKn2zgx1s2QOmt3x/kmvnf0dEq6n5p3Reua72+HYLqrTDmcGeeU5aV7mcHvQqPnPpXmkgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAAA+zIWRLiS/pGtNUwpo9FyqNk8Hjlatcrv6O/n9LVZ7aj3tG1Z8m5bI5m5/fvoogZRt1UQuZ3qJ34/ZHB73ov4v3sgcEq1RzwkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAAAAH2VEE+OkEH7Mjo63apXzy+X0TKgdDz+e1fa/vr67+2v6pm1aKrEs4tkCo6u++zx/u71+3Xcqvp779PeUC7U3WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAAAAAZYiTugfSdq17TVrm/SB86GJBTvpBymiNsz1m35G1m7T8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAAADYawADMwz+Ym37pG5pGzHHpnMAOgc9s1gA2moAAAAAAAAAAlEVs1g2mp9+AAAyMWf01gANmsAAMvpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADXfaFfcdj6MNjsAAFj4vXlszrEpEb5P78TUurH6cq87MwrSwQYc3sT5UxXIM7sJrKywzjLIRyejtr5rdPpxNZ392tlnrFmrMwLRE1ezYyZipOh1omsrRWD4WEryywzjLDnMVt3kOCskiVU63ywFJTe1E1hZuTLn9rfXkfflhjQ49iz6Mqbr3WOJqyzcyXMJkIc/t5THK+fZRXnS6sTWPtur0xIjdSQcGJbOEmAtH1HFkR5CeQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgABM6PDtkxUsur1jgydG5PIs1Zsxy5smAjqaN/OOJ2M+mcOdze6VOzQpRnWrLWU2as2PgIldHdCOzTrlTSzVmzVlO3uV+2IqVnhdQ06o2ZNrvarx8s1ZtJVnYyhMrNp50p2vbqOFYa7YSuWKuW8r1hrvdI8dDOvWbXziY2xpV2xxe7CubYFiKpZov04VirvUhz5nS3S50+BPFZ7MgjR7DXjrc7o8k+x+9pPnV4vaKzIjyE8gQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AABliJ0TAZfcA26hnIiDbqCXq0jL7gJkT4NuoJvTr/AEZQJUT5DbnHnnXrOeA2axK1aglRRu0gyxE2H8GUuEPuzUPuzUG7SM8tQlxA27Yo26/gm6NI+7NQlxAAlYaBnlqExo7kvnJn8Y26iEjR8E3RpGX3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAAA6/MstXugcW11qJ0i7wC3FRXb4UpngAFzpgLcVFN6hXgC5lS09bsFRXmunIdexFG22ninM+XakgtpUl6qxzjYa14+FIbbEVhea+cZvuZRV2pR8WyeUR0ecCzlYXrgHEfbUVRIuhQ12rBAXbMoywTSpL3VzmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AABPgWDnrDLFTdngJh86xV62j5f6B6N3z5zY+ntORphd8rkzV1Cw86R5+WToyI5VupzrIY04F8od5KNfaH6Kee3bZzSdSbT0T5QvRvOi9UW604+3KkX0oV+jTzzqxV2WdGNbtBC6EbMpHoEbqnG4Vq5RzYd1r51K9dOAcXn3D6U7qy6+Z3fHSQLL5veit2WqdI+V62QDhXmpWcqszlZm61zOMVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAZX+g+l+T18uJYHl9dfk9cQaJ6R536fLFv9A7Hs8fHBIuFHswyw5Je/Pen1Tow63marJUppu43Z4wvVF9AKLeKF3DlXeFWC6UjOzk2i9fiF3pV98/FnrHbIdm01Q1yov07knLEiya11SJcYtWLVwOfaiRwpFfLzVJvUJFI26heaN0yHd4lZIV6ovVErg2Y+R5NZLBphajRd6N2SBcY1VI4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANd9oV9x2Pow2OwAAytVTcd2xU1dlsVMWysallYd8AAAAAAAOnzB2+IAADsccdbkgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAAGf01tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tnwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrvtCvuOx9GGx2AAA2D7hiZYgAAAAAAAAAAAAAAAAAAAAAAAyxG35ryMWzWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAB9zawB9+ZkqF3eEACzlYWuqDZtnnPy6ucq6znQ50qPYCus5xzmUohuhBMUnaQWyWQPu/Wb4ls4UxAJkTDS9RpTcSIkbSEkaD46MI1pewgN0o54ANmHzYawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgABs17NYB2ZFezLdzsOFMbtJE5Wzk9mY01m0Qjpc+fyJbZsKbBy+twD73OF3RyutwDty432UPHm9WGHXYy4fZ5O6HGw17Im58yfyJjTK+dM316w8CU6XwuvCF9+csskfbjJnyfsOxwezUy2xYnUlWNXT5nMgNmvYawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgABl9w2mp9+D78HQ54AdGBiPvS5gnyOQJm3nDf1OINsznDf1OINsznDbIhDq/eSRKyhkssR18uMR97HGJ60OKJEnnCZo1DowtY7fNjDo84Js3ijLEB9MvmeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA132hX3HY+jDY7AAADbjhkYtg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg1tg+ZYYgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGu+0K+47H0YbHYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa77Qr7jsfRhsdgAAAAAAAAAAAA'... 101404 more characters
+    },
+    contextInfo: {
+      mentionedJid: [],
+      groupMentions: [],
+      statusAttributions: [],
+      pairedMediaType: 0,
+      statusSourceType: 0
+    },
+    messageType: 'imageMessage',
+    messageTimestamp: 1791476672,
+    instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c',
+    source: 'ios'
+  },
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:24:36.946Z',
+  sender: '5511913391947@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '71cb125a-1818-49ff-80b3-5b8ef121b23a'
+}
+
+[Evolution API]  [wz_38d1ee70eb624c27a391ff2b60b1f0c0]  v2.3.7  169   -  Thu Oct 08 2026 13:24:36     DEBUG   [ChannelStartupService]  [string]  Updating contact: {
+  "id": "170240356925558@lid",
+  "notify": "Carla - LTS"
+}
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:24:36     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'chats.update',
+  instance: 'wz_38d1ee70eb624c27a391ff2b60b1f0c0',
+  data: [
+    {
+      remoteJid: '120363425108555723@g.us',
+      instanceId: 'b1d5e419-5a2c-4974-bdcc-9d01ce806037'
+    }
+  ],
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:24:36.971Z',
+  sender: '5511993144076@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '38d1ee70-eb62-4c27-a391-ff2b60b1f0c0'
+}
+
+[Evolution API]  [wz_38d1ee70eb624c27a391ff2b60b1f0c0]  v2.3.7  169   -  Thu Oct 08 2026 13:24:37     VERBOSE   [ChannelStartupService]  [string]  Updating cache for group: 120363400872448195@g.us
+[Evolution API]  [wz_71cb125a181849ff80b35b8ef121b23a]  v2.3.7  169   -  Thu Oct 08 2026 13:24:37     DEBUG   [ChannelStartupService]  [string]  Updating contact: {
+  "id": "113426378575883@lid",
+  "notify": "Chris"
+}
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:24:37     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'chats.update',
+  instance: 'wz_71cb125a181849ff80b35b8ef121b23a',
+  data: [
+    {
+      remoteJid: '120363410092574414@g.us',
+      instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c'
+    }
+  ],
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:24:37.293Z',
+  sender: '5511913391947@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '71cb125a-1818-49ff-80b3-5b8ef121b23a'
+}
+
+deploywz@projectwz-vps:~$ ps -o pid,ppid,lstart,etime,%cpu,%mem,cmd -p 1969616,3948662
+    PID    PPID                  STARTED     ELAPSED %CPU %MEM CMD
+1969616 1969479 Sat Oct  3 23:10:04 2026  4-14:14:42  0.9  1.6 node dist/index.js
+3948662 3948607 Thu Sep  3 06:31:02 2026 35-06:53:44  0.0  0.1 node server.js
+deploywz@projectwz-vps:~$ pstree -aps 1969616
+systemd,1 --system --deserialize 61
+  └─containerd-shim,1969411 -namespace moby -id d61cc6fe6369515aa30c249edf67a73614ab01bce547ff03a83f1fafef2c409f-a
+      └─npm start,1969479
+          └─node,1969616 dist/index.js
+              ├─{node},1969617
+              ├─{node},1969618
+              ├─{node},1969619
+              ├─{node},1969620
+              ├─{node},1969621
+              ├─{node},1969622
+              ├─{node},1969631
+              ├─{node},1969632
+              ├─{node},1969633
+              └─{node},1969634
+deploywz@projectwz-vps:~$ pstree -aps 3948662
+systemd,1 --system --deserialize 61
+  └─containerd-shim,3948607 -namespace moby -id 8d74f5c14c9785a01cf7ae960002c1d7018d5c5b6b7366a7cfae7f5ed8e75b50-a
+      └─node,3948662 server.js
+          ├─{node},3948788
+          ├─{node},3948789
+          ├─{node},3948790
+          ├─{node},3948791
+          ├─{node},3948792
+          └─{node},3948793
+deploywz@projectwz-vps:~$ cat /proc/1969616/cgroup
+0::/system.slice/docker-d61cc6fe6369515aa30c249edf67a73614ab01bce547ff03a83f1fafef2c409f.scope
+deploywz@projectwz-vps:~$ cat /proc/3948662/cgroup
+0::/system.slice/docker-8d74f5c14c9785a01cf7ae960002c1d7018d5c5b6b7366a7cfae7f5ed8e75b50.scope
+deploywz@projectwz-vps:~$ docker exec wz-postgres-prod psql -U projectwz -d project_wz -c "SELECT pid, usename, state, wait_event_type, wait_event, now()-query_start AS duration, LEFT(query,300) AS query FROM pg_stat_activity WHERE state <> 'idle' ORDER BY query_start;"
+  pid   |  usename  | state  | wait_event_type | wait_event | duration |                                                                                       query                                                                            
+--------+-----------+--------+-----------------+------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 814532 | projectwz | active |                 |            | 00:00:00 | SELECT pid, usename, state, wait_event_type, wait_event, now()-query_start AS duration, LEFT(query,300) AS query FROM pg_stat_activity WHERE state <> 'idle' ORDER BY query_start;
+(1 row)
+
+deploywz@projectwz-vps:~$ docker exec wz-redis-prod redis-cli INFO memory
+# Memory
+used_memory:244627664
+used_memory_human:233.30M
+used_memory_rss:84865024
+used_memory_rss_human:80.93M
+used_memory_peak:244774016
+used_memory_peak_human:233.43M
+used_memory_peak_perc:99.94%
+used_memory_overhead:1901377
+used_memory_startup:948400
+used_memory_dataset:242726287
+used_memory_dataset_perc:99.61%
+allocator_allocated:245654712
+allocator_active:246038528
+allocator_resident:252010496
+allocator_muzzy:0
+total_system_memory:4105482240
+total_system_memory_human:3.82G
+used_memory_lua:102400
+used_memory_vm_eval:102400
+used_memory_lua_human:100.00K
+used_memory_scripts_eval:33152
+number_of_cached_scripts:4
+number_of_functions:0
+number_of_libraries:0
+used_memory_vm_functions:33792
+used_memory_vm_total:136192
+used_memory_vm_total_human:133.00K
+used_memory_functions:192
+used_memory_scripts:33344
+used_memory_scripts_human:32.56K
+maxmemory:0
+maxmemory_human:0B
+maxmemory_policy:noeviction
+allocator_frag_ratio:1.00
+allocator_frag_bytes:239752
+allocator_rss_ratio:1.02
+allocator_rss_bytes:5971968
+rss_overhead_ratio:0.34
+rss_overhead_bytes:-167145472
+mem_fragmentation_ratio:0.35
+mem_fragmentation_bytes:-159744728
+mem_not_counted_for_evict:8
+mem_replication_backlog:0
+mem_total_replication_buffers:0
+mem_clients_slaves:0
+mem_clients_normal:381481
+mem_cluster_links:0
+mem_aof_buffer:8
+mem_allocator:jemalloc-5.3.0
+mem_overhead_db_hashtable_rehashing:0
+active_defrag_running:0
+lazyfree_pending_objects:0
+lazyfreed_objects:0
+deploywz@projectwz-vps:~$ docker exec wz-redis-prod redis-cli DBSIZE
+8672
+deploywz@projectwz-vps:~$ sudo du -xhd1 /opt 2>/dev/null | sort -h
+12K     /opt/containerd
+62G     /opt
+62G     /opt/projectwz
+deploywz@projectwz-vps:~$ sudo du -xhd1 /var/lib 2>/dev/null | sort -h
+docker system df -v4.0K /var/lib/aptitude
+4.0K    /var/lib/boltd
+4.0K    /var/lib/dbus
+4.0K    /var/lib/dhcp
+4.0K    /var/lib/git
+4.0K    /var/lib/man-db
+4.0K    /var/lib/misc
+4.0K    /var/lib/os-prober
+4.0K    /var/lib/plymouth
+4.0K    /var/lib/private
+4.0K    /var/lib/python
+4.0K    /var/lib/tpm
+4.0K    /var/lib/ubuntu-drivers-common
+4.0K    /var/lib/ubuntu-release-upgrader
+4.0K    /var/lib/udisks2
+4.0K    /var/lib/unattended-upgrades
+4.0K    /var/lib/upower
+8.0K    /var/lib/apport
+8.0K    /var/lib/landscape
+8.0K    /var/lib/logrotate
+8.0K    /var/lib/sudo
+8.0K    /var/lib/vim
+12K     /var/lib/update-manager
+16K     /var/lib/grub
+20K     /var/lib/update-notifier
+28K     /var/lib/pam
+36K     /var/lib/PackageKit
+40K     /var/lib/polkit-1
+116K    /var/lib/ucf
+192K    /var/lib/fail2ban
+200K    /var/lib/cloud
+596K    /var/lib/systemd
+704K    /var/lib/usbutils
+2.0M    /var/lib/fwupd
+3.5M    /var/lib/command-not-found
+7.2M    /var/lib/ubuntu-advantage
+33M     /var/lib/dpkg
+318M    /var/lib/apt
+437M    /var/lib/docker
+793M    /var/lib/snapd
+18G     /var/lib/containerd
+20G     /var/lib
+deploywz@projectwz-vps:~$ docker system df -v
+Images space usage:
+
+REPOSITORY                     TAG           IMAGE ID       CREATED         SIZE      SHARED SIZE   UNIQUE SIZE   CONTAINERS
+projectwz-dashboard            latest        6ecbfc6f55af   4 days ago      1.65GB    193.2MB       1.456GB       1
+projectwz-api                  latest        7266c5273d4a   4 days ago      1.91GB    193.2MB       1.717GB       4
+projectwz/wz-connector         2.3.7-wz.1    d0adbbe3759d   5 days ago      1.7GB     2B            1.702GB       1
+jpillora/chisel                latest        e5538d0a8432   5 weeks ago     17.2MB    0B            17.22MB       1
+baptistearno/typebot-builder   latest        67716df95207   6 weeks ago     6.19GB    338.5MB       5.854GB       1
+baptistearno/typebot-viewer    latest        0911a6c60f0c   6 weeks ago     5.98GB    338.5MB       5.641GB       1
+redis                          7-alpine      e7723ff73d96   2 months ago    57.8MB    32B           57.82MB       1
+postgres                       15-alpine     3d0f7584ed7d   3 months ago    417MB     0B            416.6MB       1
+caddy                          2.10-alpine   4c6e91c6ed0e   7 months ago    83.2MB    32B           83.19MB       1
+node                           18-alpine     8d6421d663b4   18 months ago   181MB     0B            181.3MB       1
+
+Containers space usage:
+
+CONTAINER ID   IMAGE                                 COMMAND                  LOCAL VOLUMES   SIZE      CREATED       STATUS                    NAMES
+c76690b3b6d1   projectwz-api:latest                  "docker-entrypoint.s…"   0               36.9kB    4 days ago    Up 4 days (healthy)       wz-campaign-worker-prod
+d61cc6fe6369   projectwz-api:latest                  "docker-entrypoint.s…"   0               73.7kB    4 days ago    Up 4 days (healthy)       wz-api-prod
+503023bfc63a   projectwz-api:latest                  "docker-entrypoint.s…"   0               12.3kB    4 days ago    Up 4 days (healthy)       wz-webhook-worker-prod
+e413cf1ef4cd   projectwz-api:latest                  "docker-entrypoint.s…"   0               12.3kB    4 days ago    Up 4 days (healthy)       wz-group-join-worker-prod
+984137ba16e9   projectwz-dashboard                   "docker-entrypoint.s…"   0               20.5kB    4 days ago    Up 4 days (healthy)       wz-dashboard-prod
+69ce8c9be501   0a1216c17552                          "/bin/bash -c '. ./D…"   0               29.8MB    5 days ago    Up 11 seconds (healthy)   projectwz-evolution-1
+07d93d083e80   baptistearno/typebot-builder:latest   "/bin/sh -c ./${SCOP…"   0               98.3kB    3 weeks ago   Up 5 days                 wz-typebot-builder
+bf5b470b8740   baptistearno/typebot-viewer:latest    "/bin/sh -c ./${SCOP…"   0               41kB      3 weeks ago   Up 5 days                 wz-typebot-viewer
+9828ab439453   postgres:15-alpine                    "docker-entrypoint.s…"   0               61.4kB    3 weeks ago   Up 5 days (healthy)       wz-postgres-prod
+8e37c85940ab   redis:7-alpine                        "docker-entrypoint.s…"   0               4.1kB     3 weeks ago   Up 20 seconds (healthy)   wz-redis-prod
+022a1c922178   caddy:2.10-alpine                     "caddy run --config …"   0               4.1kB     3 weeks ago   Up 3 weeks                wz-caddy-prod
+8d74f5c14c97   node:18-alpine                        "docker-entrypoint.s…"   0               15.5MB    5 weeks ago   Up 5 weeks                proxy_vps_hub
+a8bd2110a328   jpillora/chisel:latest                "/ko-app/chisel serv…"   0               4.1kB     5 weeks ago   Up 5 weeks                chisel_tunnel_daemon
+
+Local Volumes space usage:
+
+VOLUME NAME                                                        LINKS     SIZE
+4a8d490d97d2b74d7f6e588063ea246f47ce5d1f1a83448868ecb68e2668c1b5   0         0B
+10364366ebe31e74c5fd2c56d36b6b58519a17096db6464996a381554af66f4f   0         0B
+2a4de978262e8373dd70d1b9b8833999f4343271b8deb3478e06a20b82fb6af8   0         0B
+52dd112c6be4c0b997f4119ceda9a833af27eeb5792dea5f449a7d3e02cfb3d3   0         0B
+e58c176996b61843931147e8b7374aacf41e64e772deef712d54131dad524db7   0         0B
+63a5f834b0d2bbdfa841321e3d2fc6a5b87c005f9b1641db88e8debade5f5207   0         0B
+
+Build cache usage: 1.252GB
+
+CACHE ID        CACHE TYPE   SIZE      CREATED      LAST USED    USAGE     SHARED
+wrmrhl2h18ri*   regular      1.04GB    5 days ago                0         false
+zkcxhidwc1xs*   regular      8.19kB    5 days ago   5 days ago   1         false
+e7wkj87dpuzo*   regular      154MB     5 days ago   5 days ago   1         false
+xv09syfvvylh*   regular      565kB     5 days ago   5 days ago   1         false
+mqa2r64wwaf4*   regular      16.4kB    5 days ago   5 days ago   2         false
+lbf1rw63ej93*   regular      3.85MB    5 days ago   5 days ago   2         false
+8q1jw0ta28mn*   regular      56.5MB    5 days ago   5 days ago   2         false
+h3i63wwde3ab*   regular      1.26MB    5 days ago   5 days ago   2         false
+2zbmctyry084*   regular      444B      5 days ago   5 days ago   2         false
+deploywz@projectwz-vps:~$ docker top projectwz-evolution-1 -eo pid,ppid,%cpu,%mem,etime,args
+PID                 PPID                %CPU                %MEM                ELAPSED             COMMAND
+1791401             1791377             0.0                 0.0                 00:19               /sbin/docker-init -- /bin/bash -c . ./Docker/scripts/deploy_database.sh && npm run start:prod
+1791428             1791401             0.5                 1.7                 00:19               npm run start:prod
+1791682             1791428             60.1                12.6                00:15               node dist/main
+deploywz@projectwz-vps:~$ docker logs --tail 100 projectwz-evolution-1
+    statusAttributions: [],
+    expiration: 604800,
+    disappearingMode: { initiator: 0 }
+  },
+  messageType: 'imageMessage',
+  messageTimestamp: 1791476787,
+  instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c',
+  source: 'web'
+}
+[Evolution API]  [wz_38d1ee70eb624c27a391ff2b60b1f0c0]  v2.3.7  169   -  Thu Oct 08 2026 13:26:29     DEBUG   [ChannelStartupService]  [string]  Updating contact: {
+  "id": "28785625829538@lid",
+  "notify": "Soluti Digital"
+}
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:26:29     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'messages.upsert',
+  instance: 'wz_71cb125a181849ff80b35b8ef121b23a',
+  data: {
+    key: {
+      remoteJid: '120363041121030751@g.us',
+      remoteJidAlt: undefined,
+      remoteJidUsername: undefined,
+      fromMe: false,
+      id: '3EB00DB1CE3E915DE0481B',
+      participant: '28785625829538@lid',
+      participantAlt: '5511970855769@s.whatsapp.net',
+      participantUsername: undefined,
+      addressingMode: 'lid'
+    },
+    pushName: 'Soluti Digital',
+    status: 'DELIVERY_ACK',
+    message: {
+      imageMessage: [Object],
+      messageContextInfo: [Object],
+      base64: '/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQIBAQEBAQIBAQECAgICAgICAgIDAwQDAwMDAwICAwQDAwQEBAQEAgMFBQQEBQQEBAQBAQEBAQEBAgEBAgQDAgMEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBP/AABEIAfQB9AMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AP7+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooprMqj5vyoAdRXmHxA+NHwi+FNk2ofFD4ofD74dWSR+Z9o8ceMNP8KxY+t1JHX59fEL/AILU/wDBM74dfaY9R/an8H+J7y2ODp/w80jWPiDNM39wS2NnJb/+RK48VmOX4KPNjK8IL+9KMfzdz7Lhvw74/wCM5KHCGR4vHN7fV8NWrfjThJL77eZ+qlFfzweNP+DlX9g7QQ8fhXwj+0P4/nT7kmn/AA/0/wALabL/ANtdQ1COT/yHX59fHT/g7j8HfDJLmTwX+wl4/wDFtmgH2fUfFfx30Twdg+X5p8y1trC8fHTA3/PXbw06XGGOllvDVSGIrxXM4xnC6XfWSXyvfyPpeNfAvxh8Ochp8T8d8OYvA4GcuSNSvScE5WvZxfvrTq4peZ/ZJRX+d94u/wCD0z9pS9L/APCD/sQfA3wxv3/Z/wDhMPixr/jDOP8Ar1t7CvBvGX/B35/wU71yO/1fwf8ACL9jnwd4etrhLOP7X4I8Q6xqW/y4pfL8qfxJ5jn3ij8uv02j4Qcc1WlPDwhfrKpFL9T8fji6M03C7trounc/0uqbvT+8v/fQr/Kw8Rf8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'... 107588 more characters
+    },
+    contextInfo: {
+      mentionedJid: [],
+      groupMentions: [],
+      statusAttributions: [],
+      expiration: 604800,
+      disappearingMode: [Object]
+    },
+    messageType: 'imageMessage',
+    messageTimestamp: 1791476787,
+    instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c',
+    source: 'web'
+  },
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:26:29.236Z',
+  sender: '5511913391947@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '71cb125a-1818-49ff-80b3-5b8ef121b23a'
+}
+
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:26:29     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'chats.update',
+  instance: 'wz_38d1ee70eb624c27a391ff2b60b1f0c0',
+  data: [
+    {
+      remoteJid: '120363041121030751@g.us',
+      instanceId: 'b1d5e419-5a2c-4974-bdcc-9d01ce806037'
+    }
+  ],
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:26:29.237Z',
+  sender: '5511993144076@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '38d1ee70-eb62-4c27-a391-ff2b60b1f0c0'
+}
+
+[Evolution API]  [wz_38d1ee70eb624c27a391ff2b60b1f0c0]  v2.3.7  169   -  Thu Oct 08 2026 13:26:29     LOG   [ChannelStartupService]  [string]  Update not read messages 120363425108555723@g.us
+[Evolution API]  [wz_71cb125a181849ff80b35b8ef121b23a]  v2.3.7  169   -  Thu Oct 08 2026 13:26:29     DEBUG   [ChannelStartupService]  [string]  Updating contact: {
+  "id": "28785625829538@lid",
+  "notify": "Soluti Digital"
+}
+[Evolution API]    v2.3.7  169   -  Thu Oct 08 2026 13:26:29     LOG   [WebhookController]  [object]
+{
+  local: 'p.sendData-Webhook',
+  url: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  event: 'chats.update',
+  instance: 'wz_71cb125a181849ff80b35b8ef121b23a',
+  data: [
+    {
+      remoteJid: '120363041121030751@g.us',
+      instanceId: '1993347d-fae6-4a27-ae4f-a2752d908b7c'
+    }
+  ],
+  destination: 'http://api:3333/api/v1/messaging/webhooks/evolution',
+  date_time: '2026-10-08T13:26:29.383Z',
+  sender: '5511913391947@s.whatsapp.net',
+  server_url: 'http://evolution:8080',
+  apikey: '71cb125a-1818-49ff-80b3-5b8ef121b23a'
+}
+
+deploywz@projectwz-vps:~$ ps -o pid,ppid,lstart,etime,%cpu,%mem,cmd -p 1969616,3948662
+    PID    PPID                  STARTED     ELAPSED %CPU %MEM CMD
+1969616 1969479 Sat Oct  3 23:10:04 2026  4-14:16:34  0.9  1.7 node dist/index.js
+3948662 3948607 Thu Sep  3 06:31:02 2026 35-06:55:36  0.0  0.0 node server.js
+deploywz@projectwz-vps:~$ pstree -aps 1969616
+systemd,1 --system --deserialize 61
+  └─containerd-shim,1969411 -namespace moby -id d61cc6fe6369515aa30c249edf67a73614ab01bce547ff03a83f1fafef2c409f-a
+      └─npm start,1969479
+          └─node,1969616 dist/index.js
+              ├─{node},1969617
+              ├─{node},1969618
+              ├─{node},1969619
+              ├─{node},1969620
+              ├─{node},1969621
+              ├─{node},1969622
+              ├─{node},1969631
+              ├─{node},1969632
+              ├─{node},1969633
+              └─{node},1969634
+deploywz@projectwz-vps:~$ pstree -aps 3948662
+systemd,1 --system --deserialize 61
+  └─containerd-shim,3948607 -namespace moby -id 8d74f5c14c9785a01cf7ae960002c1d7018d5c5b6b7366a7cfae7f5ed8e75b50-a
+      └─node,3948662 server.js
+          ├─{node},3948788
+          ├─{node},3948789
+          ├─{node},3948790
+          ├─{node},3948791
+          ├─{node},3948792
+          └─{node},3948793
+deploywz@projectwz-vps:~$ cat /proc/1969616/cgroup
+0::/system.slice/docker-d61cc6fe6369515aa30c249edf67a73614ab01bce547ff03a83f1fafef2c409f.scope
+deploywz@projectwz-vps:~$ cat /proc/3948662/cgroup
+0::/system.slice/docker-8d74f5c14c9785a01cf7ae960002c1d7018d5c5b6b7366a7cfae7f5ed8e75b50.scope
+deploywz@projectwz-vps:~$ cat /proc/3948662/cgroup
+0::/system.slice/docker-8d74f5c14c9785a01cf7ae960002c1d7018d5c5b6b7366a7cfae7f5ed8e75b50.scope
+deploywz@projectwz-vps:~$ docker exec wz-redis-prod redis-cli INFO memory
+# Memory
+used_memory:244327408
+used_memory_human:233.01M
+used_memory_rss:84770816
+used_memory_rss_human:80.84M
+used_memory_peak:246230592
+used_memory_peak_human:234.82M
+used_memory_peak_perc:99.23%
+used_memory_overhead:1670937
+used_memory_startup:948464
+used_memory_dataset:242656471
+used_memory_dataset_perc:99.70%
+allocator_allocated:245726056
+allocator_active:246116352
+allocator_resident:258453504
+allocator_muzzy:0
+total_system_memory:4105482240
+total_system_memory_human:3.82G
+used_memory_lua:84992
+used_memory_vm_eval:84992
+used_memory_lua_human:83.00K
+used_memory_scripts_eval:32136
+number_of_cached_scripts:3
+number_of_functions:0
+number_of_libraries:0
+used_memory_vm_functions:33792
+used_memory_vm_total:118784
+used_memory_vm_total_human:116.00K
+used_memory_functions:192
+used_memory_scripts:32328
+used_memory_scripts_human:31.57K
+maxmemory:0
+maxmemory_human:0B
+maxmemory_policy:noeviction
+allocator_frag_ratio:1.00
+allocator_frag_bytes:246232
+allocator_rss_ratio:1.05
+allocator_rss_bytes:12337152
+rss_overhead_ratio:0.33
+rss_overhead_bytes:-173682688
+mem_fragmentation_ratio:0.35
+mem_fragmentation_bytes:-159517184
+mem_not_counted_for_evict:320
+mem_replication_backlog:0
+mem_total_replication_buffers:0
+mem_clients_slaves:0
+mem_clients_normal:151297
+mem_cluster_links:0
+mem_aof_buffer:320
+mem_allocator:jemalloc-5.3.0
+mem_overhead_db_hashtable_rehashing:0
+active_defrag_running:0
+lazyfree_pending_objects:0
+lazyfreed_objects:0
+deploywz@projectwz-vps:~$ docker exec wz-redis-prod redis-cli DBSIZE
+8672
+deploywz@projectwz-vps:~$
